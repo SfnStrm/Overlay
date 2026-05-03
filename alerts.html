@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Alerts</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 120px;
+    overflow: hidden;
+  }
+  .alert {
+    background: rgba(245, 240, 232, 0.96);
+    border: 1px solid #b5674a;
+    border-radius: 3px;
+    padding: 14px 24px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    min-width: 300px;
+  }
+  .alert.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .alert-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #3a2e24;
+    letter-spacing: 1px;
+  }
+  .alert-action {
+    font-size: 11px;
+    color: #b5674a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #b5674a;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+  <div class="alert" id="alert">
+    <div class="alert-name" id="alert-name">username</div>
+    <div class="alert-action" id="alert-action"><span class="dot"></span>vient de follow</div>
+  </div>
+
+  <script>
+    function showAlert(name, type) {
+      const el = document.getElementById('alert');
+      const nameEl = document.getElementById('alert-name');
+      const actionEl = document.getElementById('alert-action');
+      const dot = '<span class="dot"></span>';
+      nameEl.textContent = name;
+      if (type === 'sub') {
+        actionEl.innerHTML = dot + 'vient de s\'abonner — merci !';
+      } else {
+        actionEl.innerHTML = dot + 'vient de follow';
+      }
+      el.classList.add('show');
+      setTimeout(() => { el.classList.remove('show'); }, 4000);
+    }
+
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'alert') {
+        showAlert(e.data.name, e.data.action);
+      }
+    });
+  </script>
+</body>
+</html>

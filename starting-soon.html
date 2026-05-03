@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>Starting Soon</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    background: #f5f0e8;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .corner { position: absolute; width: 28px; height: 28px; border-color: #b5674a; border-style: solid; }
+  .tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; }
+  .tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; }
+  .bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; }
+  .br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; }
+  .center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .surtitle {
+    font-size: 13px;
+    color: #a89880;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: #b5674a;
+    margin-bottom: 28px;
+  }
+  .main {
+    font-size: 64px;
+    font-weight: 300;
+    color: #3a2e24;
+    letter-spacing: 18px;
+    text-transform: uppercase;
+  }
+  .sub {
+    font-size: 11px;
+    color: #b5674a;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="center">
+    <div class="surtitle">Le stream va débuter</div>
+    <div class="divider"></div>
+    <div class="main">Bientôt</div>
+    <div class="sub">— en préparation —</div>
+  </div>
+</body>
+</html>
