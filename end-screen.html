@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920, height=1080">
 <title>End Screen</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,47 +15,44 @@
     align-items: center;
     justify-content: center;
   }
-  .corner { position: absolute; width: 28px; height: 28px; border-color: #b5674a; border-style: solid; }
-  .tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; }
-  .tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; }
-  .bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; }
-  .br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; }
-  .center {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .wave {
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,248,240,0.55) 48%, rgba(255,252,246,0.75) 50%, rgba(255,248,240,0.55) 52%, transparent 60%);
+    animation: diagonalWave 8s ease-in-out infinite;
+    pointer-events: none;
   }
-  .surtitle {
-    font-size: 13px;
-    color: #a89880;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
+  @keyframes diagonalWave {
+    0% { transform: translateX(-30%) translateY(-30%); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateX(30%) translateY(30%); opacity: 0; }
   }
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: #b5674a;
-    margin-bottom: 28px;
-  }
-  .main {
-    font-size: 42px;
-    font-weight: 300;
-    color: #3a2e24;
-    letter-spacing: 14px;
-    text-transform: uppercase;
-  }
-  .sub {
-    font-size: 12px;
-    color: #a89880;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-top: 24px;
-  }
+  .corner { position: fixed; width: 40px; height: 40px; border-color: #b5674a; border-style: solid; opacity: 0; animation: fadeIn 1.5s ease forwards; }
+  .tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; animation-delay: 0.2s; }
+  .tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; animation-delay: 0.4s; }
+  .bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; animation-delay: 0.6s; }
+  .br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; animation-delay: 0.8s; }
+  .center { text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; margin-top: 60px; }
+  .surtitle { font-size: 14px; color: #a89880; letter-spacing: 7px; text-transform: uppercase; opacity: 0; animation: slideUp 1s ease forwards; animation-delay: 1s; margin-bottom: 28px; }
+  .divider { width: 0; height: 1px; background: #b5674a; margin: 0 auto 28px; animation: expandWidth 1s ease forwards; animation-delay: 1.8s; }
+  .main { font-size: 56px; font-weight: 300; color: #3a2e24; letter-spacing: 18px; text-transform: uppercase; opacity: 0; animation: slideUp 1s ease forwards; animation-delay: 2.4s; white-space: nowrap; margin-bottom: 20px; }
+  .sub { font-size: 13px; color: #a89880; letter-spacing: 4px; text-transform: uppercase; opacity: 0; animation: fadeIn 1.5s ease forwards; animation-delay: 3s; margin-bottom: 52px; }
+  .socials { display: flex; gap: 50px; align-items: center; opacity: 0; animation: slideUp 1s ease forwards; animation-delay: 3.6s; }
+  .social-item { display: flex; align-items: center; gap: 10px; }
+  .social-text { font-size: 14px; color: #a89880; letter-spacing: 2px; white-space: nowrap; }
+  .sep { width: 1px; height: 24px; background: #ddd5c4; }
+  .icon { width: 20px; height: 20px; flex-shrink: 0; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes expandWidth { from { width: 0; } to { width: 80px; } }
 </style>
 </head>
 <body>
+  <div class="wave"></div>
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
@@ -66,6 +62,21 @@
     <div class="divider"></div>
     <div class="main">À bientôt</div>
     <div class="sub">Merci d'avoir regardé</div>
+    <div class="socials">
+      <div class="social-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" fill="#b5674a"/>
+        </svg>
+        <span class="social-text">Stream tous les dim. & jeu. à 20h30</span>
+      </div>
+      <div class="sep"></div>
+      <div class="social-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="#b5674a"/>
+        </svg>
+        <span class="social-text">@maitre.feriani</span>
+      </div>
+    </div>
   </div>
 </body>
 </html>
