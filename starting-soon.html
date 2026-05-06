@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920, height=1080">
 <title>Starting Soon</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,48 +15,44 @@
     align-items: center;
     justify-content: center;
   }
-  .corner { position: absolute; width: 28px; height: 28px; border-color: #b5674a; border-style: solid; }
-  .tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; }
-  .tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; }
-  .bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; }
-  .br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; }
-  .center {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+  .wave {
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,248,240,0.55) 48%, rgba(255,252,246,0.75) 50%, rgba(255,248,240,0.55) 52%, transparent 60%);
+    animation: diagonalWave 5s ease-in-out infinite;
+    pointer-events: none;
   }
-  .surtitle {
-    font-size: 13px;
-    color: #a89880;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
+  @keyframes diagonalWave {
+    0% { transform: translateX(-30%) translateY(-30%); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateX(30%) translateY(30%); opacity: 0; }
   }
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: #b5674a;
-    margin-bottom: 28px;
-  }
-  .main {
-    font-size: 64px;
-    font-weight: 300;
-    color: #3a2e24;
-    letter-spacing: 18px;
-    text-transform: uppercase;
-  }
-  .sub {
-    font-size: 11px;
-    color: #b5674a;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-top: 24px;
-  }
+  .corner { position: fixed; width: 40px; height: 40px; border-color: #b5674a; border-style: solid; opacity: 0; animation: fadeIn 1s ease forwards; }
+  .tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; animation-delay: 0.2s; }
+  .tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; animation-delay: 0.4s; }
+  .bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; animation-delay: 0.6s; }
+  .br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; animation-delay: 0.8s; }
+  .center { text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
+  .surtitle { font-size: 14px; color: #a89880; letter-spacing: 7px; text-transform: uppercase; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 1s; margin-bottom: 28px; }
+  .divider { width: 0; height: 1px; background: #b5674a; margin: 0 auto 28px; animation: expandWidth 0.8s ease forwards; animation-delay: 1.6s; }
+  .main { font-size: 80px; font-weight: 300; color: #3a2e24; letter-spacing: 22px; text-transform: uppercase; opacity: 0; animation: slideUp 0.8s ease forwards; animation-delay: 2s; white-space: nowrap; }
+  .sub { font-size: 13px; color: #b5674a; letter-spacing: 5px; text-transform: uppercase; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 2.6s; margin-top: 28px; }
+  .pulse-dot { position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; opacity: 0; animation: fadeIn 0.8s ease forwards; animation-delay: 3.2s; z-index: 2; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: #b5674a; animation: pulse 1.5s ease-in-out infinite; }
+  .dot:nth-child(2) { animation-delay: 0.3s; }
+  .dot:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes expandWidth { from { width: 0; } to { width: 80px; } }
+  @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 </style>
 </head>
 <body>
+  <div class="wave"></div>
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
@@ -68,5 +63,11 @@
     <div class="main">Bientôt</div>
     <div class="sub">— en préparation —</div>
   </div>
+  <div class="pulse-dot">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
 </body>
 </html>
+
